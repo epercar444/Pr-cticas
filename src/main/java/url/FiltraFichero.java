@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FiltraFichero {
+	private static final String extension = ".properties";
 	private static final String expRegular = ".*_[a-zA-Z]{2}.properties";
 	final static String rutaDirectorio = "C:\\Users\\epercar444\\Desktop\\eclipse-workspace\\NacexE\\src\\main\\resources";
 
@@ -13,7 +14,7 @@ public class FiltraFichero {
 		List<File> ficherosOrigen = r.filtraFicheroOrigen();
 		System.out.println(ficherosOrigen);
 		for (File f : ficherosOrigen) {
-			int index = f.getName().indexOf(".properties");
+			int index = f.getName().indexOf(extension);
 			String nombre = f.getName().substring(0,index);
 			List<String> idiomas = r.FiltraIdioma(nombre);
 			System.out.println(idiomas);
@@ -43,18 +44,17 @@ public class FiltraFichero {
 	}
 
 	/**
-	 * FiltraIdioma: 
+	 * FiltraIdioma: filtra los diferentes idiomas en los que encontramos los ficheros defaults.
 	 * @author epercar444
-	 * @param directorio1
-	 * @param
-	 * @return
+	 * @param directorio1 será la ruta base.
+	 * @return una lista de cadenas donde habremos guardado las iniciales de los idiomas traducidos.
 	 */
 	public List<String> FiltraIdioma(String directorio1) {
 		List<String> listaIdioma = new ArrayList<String>();
 		List<File> idiomas = filtraFicheroIdiomas(directorio1);
 		for (File f : idiomas) {
 			String nombreFichero = f.getName();
-			int index = nombreFichero.indexOf(".properties");
+			int index = nombreFichero.indexOf(extension );
 			if (nombreFichero.split("_").length > 2) {
 				listaIdioma.add(nombreFichero.substring(index - 4, index));
 			}
