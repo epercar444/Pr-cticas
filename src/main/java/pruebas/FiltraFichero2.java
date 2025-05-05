@@ -1,16 +1,16 @@
-package url;
+package pruebas;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FiltraFichero {
+public class FiltraFichero2 {
 	private static final String extension = ".properties";
 	private static final String expRegular = ".*_[a-zA-Z]{2}.properties";
 	final static String rutaDirectorio = "C:\\Users\\epercar444\\Desktop\\eclipse-workspace\\NacexE\\src\\main\\resources";
 
 	public static void main(String[] args) {
-		FiltraFichero r = new FiltraFichero();
+		FiltraFichero2 r = new FiltraFichero2();
 		List<File> ficherosOrigen = r.filtraFicheroOrigen();
 		System.out.println(ficherosOrigen);
 		for (File f : ficherosOrigen) {
@@ -21,6 +21,10 @@ public class FiltraFichero {
 		}
 	}
 
+	/**
+	 * filtraFicheroOrigen: filtra por ficheros origen, es decir, aquellos que su nombre no tienen ninguna extensión asociada a un idioma como [ca,es,en]
+	 * @return devuelve una lista de ficheros, que contiene el nombre de los ficheros origen
+	 */
 	public List<File> filtraFicheroOrigen() {
 		List<File> ficheros = new ArrayList<File>();
 		File directorio = new File(rutaDirectorio);
@@ -32,7 +36,12 @@ public class FiltraFichero {
 		return ficheros;
 	}
 
-	public List<File> filtraFicheroIdiomas(String directorio1) {
+	/** 
+	 * filtraFicheroIdiomas: busca los diferentes nombres en los que encontramos el fichero que le pasamos por parámetro.
+	 * @param directorio1 será la ruta base por la que queremos filtrar
+	 * @return lista de ficheros que contienen la extensión de dichos idiomas, es decir, directorio1_idioma
+	 */
+	public List<File> filtraFicheroIdiomas(String directorio1, String nombrefichero) {
 		List<File> idiomas = new ArrayList<File>();
 		File directorio = new File(rutaDirectorio);
 		for (File f : directorio.listFiles()) {
@@ -54,7 +63,7 @@ public class FiltraFichero {
 		List<File> idiomas = filtraFicheroIdiomas(directorio1);
 		for (File f : idiomas) {
 			String nombreFichero = f.getName();
-			int index = nombreFichero.indexOf(extension );
+			int index = nombreFichero.indexOf(extension);
 			if (nombreFichero.split("_").length > 2) {
 				listaIdioma.add(nombreFichero.substring(index - 4, index));
 			}
