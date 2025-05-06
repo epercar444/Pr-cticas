@@ -10,26 +10,10 @@ import pruebas.*;
 
 public class FiltraRecursos2 {
 	final static String rutaDirectorio = "C:\\Users\\epercar444\\Desktop\\eclipse-workspace\\NacexE\\src\\main\\resources";
-	final static String rutaWeb = "C:\\Users\\epercar444\\Desktop\\eclipse-workspace\\NacexE\\src\\main\\resources";
+	//final static String rutaDirectorio = "C::" + File.separator + "Users" + File.separator + "epercar444" + File.separator + "eclipse-workspace" + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "web2017";
 	public static void main(String[] args) {
-		FiltraFicheroOrigen o = new FiltraFicheroOrigen();
-		FiltraRecursos2 m = new FiltraRecursos2();
-		System.out.println(m.buscaPorNombre(rutaDirectorio,"nacexShop"));
-		//List<String> nombres = m.buscaPorNombre();
-		//FiltraFicheroIdiomas n = new FiltraFicheroIdiomas();
-		//System.out.println(n.filtraFicheroIdiomas(nombres.get(0)));
+	FiltraIdioma n = new FiltraIdioma();
+	System.out.println(n.FiltraIdioma(rutaDirectorio));
 	}
-	public String buscaPorNombre (String rutaDirectorio, String nombrefichero) {
-		String nombre = "";
-		File directorio = new File(rutaDirectorio);
-		for (File d : directorio.listFiles()) {
-			if (d.equals(nombrefichero))  {
-				nombre = d.getName();
-				String [] devuelveNombre = nombrefichero.split("\\.");
-				String nombres = Arrays.toString(devuelveNombre);
-				nombre = devuelveNombre[0];
-		}
-	}   
-		return nombre;
-}
+	
 }
